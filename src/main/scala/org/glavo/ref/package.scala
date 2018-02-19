@@ -1,6 +1,5 @@
 package org.glavo
 
-import scala.collection.mutable
 import scala.language.experimental.macros
 import scala.language.implicitConversions
 import scala.reflect.macros.blackbox
@@ -10,7 +9,11 @@ package object ref {
     override def get: A = value
   }
 
-  def &&[A](value: => A): MutableRef[A] = macro refMacro[A]
+  implicit def &&[A](value: => A): MutableRef[A] = macro refMacro[A]
+
+  implicit def *[A](ref: Ref[A]): A = ref.get
+
+  implicit def *[A](ref: MutableRef[A]): A = ref.get
 
   def refMacro[A: c.WeakTypeTag](c: blackbox.Context)(value: c.Tree): c.Tree = {
     import c.universe._
@@ -33,4 +36,5 @@ package object ref {
     }
   }
 
+  implicit def mutableRef2ref[A](mutableRef: MutableRef[A]): Ref[A] = &(mutableRef.get)
 }

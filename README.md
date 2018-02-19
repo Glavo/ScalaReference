@@ -44,4 +44,19 @@ assert(arrRef.get == 0)
 
 arrRef.set(10)
 assert(arr(0) == 10)
+
+//swap
+def swap[A](a1: MutableRef[A], a2: MutableRef[A]): Unit = {
+  val n = a1.get
+  a1.set(a2.get)
+  a2.set(n)
+}
+
+var a1 = 10
+var a2 = 20
+
+swap(a1, a2)
+
+assert(a1 == 20)
+assert(a2 == 10)
 ```
