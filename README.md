@@ -7,7 +7,7 @@
 If you're using SBT, add the following lines to your build file:
 ```sbt
 resolvers += "jitpack" at "https://jitpack.io"
-libraryDependencies += "org.glavo" %% "ScalaReference" % "0.1"
+libraryDependencies += "org.glavo" %% "ScalaReference" % "0.3"
 ```
 
 ## Usage
