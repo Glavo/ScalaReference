@@ -1,6 +1,16 @@
 # ScalaReference
 
-Use reference in scala:
+[![](https://jitpack.io/v/Glavo/ScalaReference.svg)](https://jitpack.io/#Glavo/ScalaReference)
+
+## Getting ScalaReference
+
+If you're using SBT, add the following lines to your build file:
+```sbt
+resolvers += "jitpack" at "https://jitpack.io"
+libraryDependencies += "com.github.Glavo" %% "ScalaReference" % "0.1"
+```
+
+## Usage
 
 ```scala
 import org.glavo.ref._
