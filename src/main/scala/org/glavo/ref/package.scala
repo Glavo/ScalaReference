@@ -1,5 +1,6 @@
 package org.glavo
 
+import scala.collection.mutable
 import scala.language.experimental.macros
 import scala.language.implicitConversions
 import scala.reflect.macros.blackbox
@@ -9,7 +10,7 @@ package object ref {
     override def get: A = value
   }
 
-  def &&[A](value: => A): MutableRef[A]  = macro refMacro[A]
+  def &&[A](value: => A): MutableRef[A] = macro refMacro[A]
 
   def refMacro[A: c.WeakTypeTag](c: blackbox.Context)(value: c.Tree): c.Tree = {
     import c.universe._
@@ -22,5 +23,14 @@ package object ref {
      """
   }
 
+  implicit class WrappedArray[A](val self: Array[A]) extends AnyVal {
+    def &(index: Int): MutableRef[A] = {
+      new MutableRef[A] {
+        override def set(value: A): Unit = self(index) = value
+
+        override def get: A = self(index)
+      }
+    }
+  }
 
 }

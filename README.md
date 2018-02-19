@@ -35,4 +35,13 @@ assert(bRef.get == 100)
 
 bRef.set(50)
 assert(b == 50)
+
+//array element reference
+val arr = Array(0, 0, 0, 0, 0)
+val arrRef = arr.&(0)
+
+assert(arrRef.get == 0)
+
+arrRef.set(10)
+assert(arr(0) == 10)
 ```
