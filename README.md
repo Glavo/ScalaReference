@@ -17,7 +17,7 @@ import org.glavo.ref._
 
 //immutable reference
 var a: Int = 10
-val aRef: Ref[Int] = &(a)
+val aRef: Ref[Int] = a
 
 assert(aRef.get == 10)
 
@@ -26,7 +26,7 @@ assert(aRef.get == 100)
 
 //mutable reference
 var b: Int = 10
-val bRef: MutableRef[Int] = &&(b)
+val bRef: MutableRef[Int] = b
 
 assert(bRef.get == 10)
 

@@ -5,15 +5,21 @@ import scala.language.implicitConversions
 import scala.reflect.macros.blackbox
 
 package object ref {
+  @inline
   implicit def &[A](value: => A): Ref[A] = new Ref[A] {
     override def get: A = value
   }
 
+  @inline
   implicit def &&[A](value: => A): MutableRef[A] = macro refMacro[A]
 
+  @inline
   implicit def *[A](ref: Ref[A]): A = ref.get
 
+  @inline
   implicit def *[A](ref: MutableRef[A]): A = ref.get
+
+  def ref[A](value: => A): MutableRef[A] = macro refMacro[A]
 
   def refMacro[A: c.WeakTypeTag](c: blackbox.Context)(value: c.Tree): c.Tree = {
     import c.universe._
