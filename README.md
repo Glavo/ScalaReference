@@ -1,6 +1,6 @@
 # ScalaReference
 
-[![](https://jitpack.io/v/Glavo/ScalaReference.svg)](https://jitpack.io/#Glavo/ScalaReference)
+[![](https://jitpack.io/v/org.glavo/ScalaReference.svg)](https://jitpack.io/#org.glavo/ScalaReference)
 
 ## Getting ScalaReference
 
