@@ -19,7 +19,12 @@ package object ref {
   @inline
   implicit def *[A](ref: MutableRef[A]): A = ref.get
 
-  def ref[A](value: => A): MutableRef[A] = macro refMacro[A]
+  object ref {
+    def unapply[A](arg: Ref[A]): Option[A] = if(arg != null) Some(arg.get) else None
+    def unapply[A](arg: MutableRef[A]): Option[A] = if(arg != null) Some(arg.get) else None
+
+    def apply[A](value: => A): MutableRef[A] = macro refMacro[A]
+  }
 
   def refMacro[A: c.WeakTypeTag](c: blackbox.Context)(value: c.Tree): c.Tree = {
     import c.universe._

@@ -2,7 +2,7 @@ name := "Ref"
 
 organization := "org.glavo"
 
-version := "0.4.1"
+version := "0.4.2"
 
 scalaVersion := "2.12.4"
 

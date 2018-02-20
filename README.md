@@ -7,7 +7,7 @@
 If you're using SBT, add the following lines to your build file:
 ```sbt
 resolvers += "jitpack" at "https://jitpack.io"
-libraryDependencies += "org.glavo" %% "ScalaReference" % "0.4.1"
+libraryDependencies += "org.glavo" %% "ScalaReference" % "0.4.2"
 ```
 
 ## Usage
@@ -35,6 +35,13 @@ assert(bRef.get == 100)
 
 bRef.set(50)
 assert(b == 50)
+
+//unapply
+val ref(a0) = aRef
+assert(a0 == a)
+
+val ref(b0) = bRef
+assert(b0 == b)
 
 //array element reference
 val arr = Array(0, 0, 0, 0, 0)
