@@ -7,7 +7,7 @@
 If you're using SBT, add the following lines to your build file:
 ```sbt
 resolvers += "jitpack" at "https://jitpack.io"
-libraryDependencies += "org.glavo" %% "ScalaReference" % "0.4.2"
+libraryDependencies += "org.glavo" %% "ScalaReference" % "0.5.0"
 ```
 
 ## Usage
@@ -19,21 +19,21 @@ import org.glavo.ref._
 var a: Int = 10
 val aRef: Ref[Int] = a
 
-assert(aRef.get == 10)
+assert(aRef.value == 10)
 
 a = 100
-assert(aRef.get == 100)
+assert(aRef.value == 100)
 
 //mutable reference
 var b: Int = 10
 val bRef: MutableRef[Int] = b
 
-assert(bRef.get == 10)
+assert(bRef.value == 10)
 
 b = 100
-assert(bRef.get == 100)
+assert(bRef.value == 100)
 
-bRef.set(50)
+bRef.value = 50
 assert(b == 50)
 
 //unapply
@@ -47,16 +47,16 @@ assert(b0 == b)
 val arr = Array(0, 0, 0, 0, 0)
 val arrRef = arr.&(0)
 
-assert(arrRef.get == 0)
+assert(arrRef.value == 0)
 
-arrRef.set(10)
+arrRef.value = 10
 assert(arr(0) == 10)
 
 //swap
 def swap[A](a1: MutableRef[A], a2: MutableRef[A]): Unit = {
-  val n = a1.get
-  a1.set(a2.get)
-  a2.set(n)
+  val n = a1.value
+  a1.value = a2.value
+  a2.value = n
 }
 
 var a1 = 10
